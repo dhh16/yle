@@ -13,10 +13,10 @@ declare function local:process-archivist-codes($codes as xs:string) as xs:string
          tokenize(
             
               replace(
-             lower-case($value),'kesken',''),'[,\s]'))
+             lower-case($value),'[kesken|valmis]',''),'[,\s]'))
   let $clean_codes:=
       for $individual in $individuals
-         return if ($individual != '' or $individual != '.') then
+         return if ($individual != '' or $individual != '.' and matches($individual,'\d*')) then
          normalize-space(functx:substring-before-if-contains($individual,'.'))
          else()
          
@@ -41,7 +41,7 @@ declare function local:create-date($date as xs:string) as xs:string? {
   let $day:=substring($date,7,2)
   
   let $date:=
-    if ($year) then
+    if ($year  and $month and $day ) then
     string-join(($year,$month,$day),'-')
     else()
   return $date
@@ -73,7 +73,7 @@ let $csv2:=
   for $date in $dates
   for $code in $codes
   let $row:=
-    if ($code) then
+    if (matches($code,'\d{1,3}') and (not(contains($date,'.') and not(contains($code,'+')) and string-length($date) eq 10))) then
       <entry>
         <id>{data($record/id)}</id>
         <code>{$code}</code>
