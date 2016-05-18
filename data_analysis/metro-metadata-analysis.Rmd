@@ -1,0 +1,292 @@
+---
+title: "YLE Metro Metadata descriptive analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(data.table)
+library(feather)
+library(stm)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+library(ggthemes)
+library(stringr)
+setwd('/Users/majulass/Documents/2016/dhh16/')
+
+colour_palette <- c(
+  "#6E5C0E",
+  "#3481F1",
+  "#F9164B",
+  "#612950",
+  "#80CA3D",
+  "#F938AD",
+  "#15733C",
+  "#33A8DB",
+  "#E2B32B",
+  "#E28F67",
+  "#9B2C13",
+  "#C1A7FB",
+  "#9A6268",
+  "#323A12",
+  "#B127A7",
+  "#484BB8",
+  "#A583FA",
+  "#C9264C")
+```
+
+
+```{r}
+
+# Vuoteen 1977 asti toimitukset itse ovat saaneet päättää mitä hävitetään ja mitä ei
+# sen jälkeen on päättänyt ohjelmaraati
+# 1977 alkoi myös omatutantoisten ohjelmien systemaattinen luettelointi
+
+# PUBLICATIONS_TVAR	Lähetystiedot (hist, lähetyshistoria vanha ennen vuotta 2001)
+# PUBLICATIONS	Lähetystiedot (Plasma)
+# PUBLICATIONS_TVAR	Lähetystiedot (hist)
+
+
+# DOCUMENTATION_DATE	Dokpvm, manuaalisesti tehty päivä
+# yle.dt.3 <- fread('/Users/majulass/Documents/2016/dhh16/yle-full_4.tsv')
+
+
+```
+
+
+
+```{r merge-datasets, eval=FALSE}
+
+# These files are initially created in BaseX
+# and refined in OpenRefine.
+
+# Original file
+yle.dt <- fread('/Users/majulass/Documents/2016/dhh16/yle.csv')
+
+# Files with manually added program categories
+yle.anu.dt <- fread('/Users/majulass/Documents/2016/dhh16/yle-csv-anu.tsv')
+yle.kult.dt <- fread('/Users/majulass/Documents/2016/dhh16/yle-csv-kult.tsv')
+yle.salla.dt <- fread('/Users/majulass/Documents/2016/dhh16/yle-csv-salla.tsv')
+
+# We need only ID and program category fields
+yle.anu.dt <- yle.anu.dt[,.(id,type_prog)]
+yle.kult.dt <- yle.kult.dt[,.(id,program_type)]
+yle.salla.dt <- yle.salla.dt[,.(id,type_prog)]
+
+# Lets fix naming
+yle.kult.dt$type_prog <- yle.kult.dt$program_type
+yle.kult.dt <- yle.kult.dt[,.(id,type_prog)]
+
+setkey(yle.dt,id)
+setkey(yle.kult.dt,id)
+setkey(yle.salla.dt,id)
+setkey(yle.anu.dt,id)
+
+# Full join of program categories and original data. Joins are done in the order of 
+# preference, so if there are multiple categorizations, we'll end up using the first one.
+yle.dt.full <-yle.dt %>% full_join(yle.anu.dt,by="id") %>% full_join(yle.kult.dt,by="id") %>% full_join(yle.salla.dt,by="id") 
+yle.dt.full[is.na(yle.dt.full)] <- ''
+
+# Merge all three category fields
+yle.dt.full <- unite(yle.dt.full, program_type, type_prog.x:type_prog.y:type_prog, sep='')
+
+# Use the first available category
+yle.dt.full$program_type <- substr(yle.dt.full$program_type,1,4)
+
+# Save merged data to the disk
+
+write.csv2(yle.dt.full,'yle.csv')
+
+```
+
+```{r prepare-dataset}
+yle.dt <- fread('yle-full_4.tsv')
+yle.dt$weekday <- wday(yle.dt$firstrun_date,label=TRUE)
+yle.dt$year <- year(yle.dt$firstrun_date)
+yle.dt$month <- month(yle.dt$firstrun_date)
+yle.dt$monthname <- month(yle.dt$firstrun_date,label=TRUE,abbr=TRUE)
+yle.dt$number <- 1
+yle.dt$content_length <- str_length(yle.dt$content)
+# Small categorization fix
+yle.dt[yle.dt$program_type=="UKK"]$program_type <- "ASIA"
+yle.dt[yle.dt$program_type==""]$program_type <- "NOT CATEGORIZED"
+
+```
+
+
+```{r other-datasets}
+# Files with metadata field string lengths
+yle.lengths.dt <- fread('/Users/majulass/Documents/2016/dhh16/yle-metadata-field-lengths.csv')
+
+
+```
+
+
+
+
+
+
+
+
+```{r prepare-metadata-length-dataset}
+yle.lengths.dt$year <- year(yle.lengths.dt$firstrun_date)
+
+yle.lengths.dt<-yle.lengths.dt %>% 
+  group_by(id) %>% 
+  mutate(total_length = 
+           sum(
+             programme_title_string_length,
+             finnish_title_string_length,
+             swedish_title_string_length,
+             main_title_string_length,
+             third_title_string_length,
+             firstrun_date_string_length,
+             firstrun_time_string_length,
+             capture_date_string_length,
+             contributor_string_length,
+             actors_string_length,
+             persons_visible_string_length,
+             origin_string_length,
+             description_string_length,
+             press_description_string_length,
+             content_string_length,
+             subject_string_length,
+             finnish_subs_first_string_length,
+             finnish_subs_second_string_length,
+             swedish_subs_string_length,
+             contributors_string_length,
+             duration_string_length,
+             classification_main_string_length,
+             classification_sub_string_length,
+             classification_content_string_length,
+             classification_comb_string_length)
+             )
+
+yle.descr.lengths.dt<-yle.lengths.dt %>% 
+  group_by(id) %>% 
+  mutate(total_length = 
+           sum(
+             programme_title_string_length,
+             finnish_title_string_length,
+             swedish_title_string_length,
+             main_title_string_length,
+             third_title_string_length,
+             actors_string_length,
+             persons_visible_string_length,
+             description_string_length,
+             press_description_string_length,
+             content_string_length,
+             subject_string_length,
+             classification_main_string_length,
+             classification_sub_string_length,
+             classification_content_string_length,
+             classification_comb_string_length)
+      )
+
+```
+
+
+
+```{r yearly-monthly-grouping}
+yle.date.groups <- yle.dt[,.(year,monthname,weekday)]
+yle.date.groups$number <- 1
+yle.data.counts <- yle.date.groups %>%
+  group_by(year,monthname) %>%
+  transmute(year=year,monthname=monthname,count=sum(number)) %>% unique
+
+```
+
+
+
+
+
+```{r yearly-origin-grouping}
+yle.data.origin.counts <- yle.dt %>%
+  group_by(year,origin) %>%
+  transmute(year=year,origin=origin,count=sum(number)) %>% unique
+```
+
+```{r yearly.type-grouping}
+yle.data.program_type.counts <- yle.dt %>%
+  group_by(year,program_type) %>%
+  transmute(year=year,program_type=program_type,count=sum(number)) %>% unique
+```
+
+```{r program-duration}
+yle.data.durations <- yle.dt %>%
+  group_by(year) %>%
+  transmute(year=year,count=sum(duration,na.rm=TRUE)) %>%
+  unique
+```
+
+
+
+
+
+
+```{r fig.width=14, fig.height=6}
+ggplot(data=yle.data.durations, aes(x=year,y=count)) +
+  geom_bar(stat="identity") +
+  scale_x_continuous(breaks=c(1957:1990),labels=c(1957:1990)) +
+  theme_minimal() +
+  labs(list(title="Total program time in minutes from 1957-1990",x="year", y="total time in minutes"))
+
+```
+  
+```{r fig.width=14, fig.height=6}
+ggplot(data=yle.data.origin.counts, aes(x=year,fill=origin,y=count)) +
+  geom_bar(stat="identity",position="fill") +
+  scale_x_continuous(breaks=c(1957:1990),labels=c(1957:1990)) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() + 
+  labs(list(title="Programs by program origin, percentages of total",x="year", y="total programs"))
+```
+
+
+```{r fig.width=14, fig.height=6}
+ggplot(data=yle.data.counts, aes(x=year,fill=monthname,y=count)) +
+  geom_bar(stat="identity") +
+  scale_x_continuous(breaks=c(1957:1990),labels=c(1957:1990)) +
+  labs(list(title="Programs by month",x="year", y="total programs")) +
+  theme_minimal()
+```
+
+```{r fig.width=14, fig.height=6}
+ggplot(data=yle.data.program_type.counts, aes(x=year,fill=as.factor(program_type),y=count)) +
+  geom_bar(stat="identity",position="fill") +
+  scale_x_continuous(breaks=c(1957:1990),labels=c(1957:1990)) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(list(title="Programs by program type",x="year", y="total programs")) +
+  scale_fill_manual(values = colour_palette) +
+  theme_minimal()
+```
+
+```{r fig.width=14, fig.height=6}
+ggplot(data=yle.lengths.dt, aes(x=as.factor(year),y=total_length)) +
+  geom_jitter(width = 0.9, height = 0.9,alpha=0.1,size=1,color="red") +
+  scale_x_discrete(breaks=c(1957:1990),labels=c(1957:1990)) +
+  scale_y_sqrt() +
+  labs(list(title="String length of program metadata",x="year", y="total string length of metadata fields")) +
+  theme_minimal()
+
+```
+
+
+```{r fig.width=14, fig.height=6}
+ggplot(data=yle.descr.lengths.dt, aes(x=as.factor(year),y=total_length)) +
+  geom_jitter(width = 0.9, height = 0.9,alpha=0.1,size=1,color="red") +
+  scale_x_discrete(breaks=c(1957:1990),labels=c(1957:1990)) +
+  scale_y_sqrt() +
+  labs(list(title="String length of content and description metadata",x="year", y="total string length of metadata fields")) +
+  theme_minimal()
+
+```
+
+
+
+
+
+
+
