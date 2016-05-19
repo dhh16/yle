@@ -18,8 +18,8 @@ contents = columns.get('content')
 data = {id: row for id, row in zip(ids, contents)}
 
 
-output = csv.writer(open("yletemp.csv", "wb"))
-output.writerow(('id', 'contents','NE','tag'))
+#output = csv.writer(open("yletemp.csv", "wb"))
+#output.writerow(('id', 'contents','NE','tag'))
 
 output = ""
 text_file = open("yle-output.txt","w")
