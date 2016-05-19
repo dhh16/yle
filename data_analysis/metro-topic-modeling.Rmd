@@ -26,19 +26,26 @@ stopwords <- fread('/Users/majulass/Documents/2016/yle/data_analysis/finstop.txt
 yle.dt <- fread('/Users/majulass/Documents/2016/dhh16/yle-full_5.tsv')
 yle.dt <- yle.dt[,.(id,program_type,firstrun_date)]
 lemmatized.dt <- lemmatized.dt[,.(id,content,programme_title,description)]
+lemmalized.dt$id <- tolower(lemmatized.dt$id)
+yle.dt$id<-tolower(yle.dt$id)
 lemmatized.dt$all_text <- paste(lemmatized.dt$content,lemmatized.dt$programme_title,lemmatized.dt$description)
-yle.stm.dt <- yle.dt %>% full_join(lemmatized.dt,by="id")
+lemmatized.dt <- lemmatized.dt[,.(id,all_text)]
+setkey(lemmatized.dt,id)
+setkey(yle.dt,id)
+yle.stm.dt <- yle.dt %>% inner_join(lemmatized.dt,by="id")
 yle.stm.dt$year <- year(yle.stm.dt$firstrun_date)
+yle.stm.dt <- data.table(yle.stm.dt)
 yle.stm.dt <- yle.stm.dt[,.(program_type,year,all_text)]
+
 processed <- textProcessor(yle.stm.dt$all_text, metadata = yle.stm.dt,stem=FALSE,customstopwords = stopwords$V1)
 
-out <- prepDocuments(processed$documents, processed$vocab, processed$meta, lower.thresh = 10)
-ukk.fit <- stm(out$documents, out$vocab, K = 20,prevalence =~ program_type + s(year), max.em.its = 70,data = out$meta, init.type = "Spectral")
+out <- prepDocuments(processed$documents, processed$vocab, processed$meta, lower.thresh = 20)
+model.fit <- stm(out$documents, out$vocab, K = 20,prevalence =~ program_type + s(year), max.em.its = 70,data = out$meta, init.type = "Spectral")
 
-prep <- estimateEffect(1:20 ~ program_type + s(year), ukk.fit,meta = out$meta, uncertainty = "Global")
+prep <- estimateEffect(1:20 ~ program_type + s(year), model.fit,meta = out$meta, uncertainty = "Global")
 
 plot.estimateEffect(prep, "year", method = "continuous", topics = 3, printlegend = TRUE, xaxt = "n", xlab = "Years")
-plot.STM(ukk.fit, type = "summary", xlim = c(0, .3))
+plot.STM(model.fit, type = "summary", xlim = c(0, .3))
 axis(1,at=seq(from=1960, to=1990,by=10))
 ```
 
