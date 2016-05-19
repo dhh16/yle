@@ -5,30 +5,31 @@ import nltk
 import csv
 from collections import defaultdict
 
-#ids = np.genfromtxt('ylestripped.csv', delimiter=',', usecols=0, dtype=str)
-#contents = np.genfromtxt('ylestripped.csv', delimiter=',',dtype=str)[:,2:]
+
 columns = defaultdict(list) 
-with open('ylestripped.csv') as f:
+with open('yle.csv') as f:
 	reader = csv.DictReader(f)
 	for row in reader:
 		for (k,v) in row.items():#iteritems
 			columns[k].append(v)
 ids = columns.get('id')
 contents = columns.get('content')
+
 data = {id: row for id, row in zip(ids, contents)}
-#print "data read"
-#data = [(id, row) for id, row in zip(ids,contents)]
-#print "data stored"
+
 
 output = csv.writer(open("yletemp.csv", "wb"))
-output.writerow(('id', 'content','NE','tag'))
-#print "creating csv"
+output.writerow(('id', 'contents','NE','tag'))
 
-for idd, content in data.iteritems():
+output = ""
+text_file = open("yle-output.txt","w")
+for id in data:
+	c = data.get(id)
+ 	try:
+ 		text = Text(c, hint_language_code='fi')
+ 		output += id + "," + c + "," + str(text.entities)
+ 	except ValueError:
+ 		pass
+text_file.write(output)
+text_file.close()
 
- 	text = Text(content, hint_language_code='fi')
- 	
- 	output.writerow([idd,content,text.entities])
-	#print idd,content,text.entities#, text.tag
-# 	
-#print "All done!"
