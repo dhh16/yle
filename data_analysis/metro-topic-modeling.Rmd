@@ -6,15 +6,11 @@ output: html_document
 ```{r setup, include=FALSE, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(data.table)
-library(feather)
 library(stm)
 library(dplyr)
 library(tidyr)
-library(ggplot2)
 library(lubridate)
-library(ggthemes)
 library(stringr)
-library(stm)
 setwd('/Users/majulass/Documents/2016/yle/data_analysis/')
 
 ```
@@ -26,7 +22,7 @@ stopwords <- fread('/Users/majulass/Documents/2016/yle/data_analysis/finstop.txt
 yle.dt <- fread('/Users/majulass/Documents/2016/dhh16/yle-full_5.tsv')
 yle.dt <- yle.dt[,.(id,program_type,firstrun_date)]
 lemmatized.dt <- lemmatized.dt[,.(id,content,programme_title,description)]
-lemmalized.dt$id <- tolower(lemmatized.dt$id)
+lemmatized.dt$id <- tolower(lemmatized.dt$id)
 yle.dt$id<-tolower(yle.dt$id)
 lemmatized.dt$all_text <- paste(lemmatized.dt$content,lemmatized.dt$programme_title,lemmatized.dt$description)
 lemmatized.dt <- lemmatized.dt[,.(id,all_text)]
@@ -37,15 +33,18 @@ yle.stm.dt$year <- year(yle.stm.dt$firstrun_date)
 yle.stm.dt <- data.table(yle.stm.dt)
 yle.stm.dt <- yle.stm.dt[,.(program_type,year,all_text)]
 
-processed <- textProcessor(yle.stm.dt$all_text, metadata = yle.stm.dt,stem=FALSE,customstopwords = stopwords$V1)
+yle.stm.subset <- yle.stm.dt %>% filter(program_type == "UUTI" | program_type == "ASIA")
+yle.stm.subsample <- yle.stm.subset
 
-out <- prepDocuments(processed$documents, processed$vocab, processed$meta, lower.thresh = 20)
-model.fit <- stm(out$documents, out$vocab, K = 20,prevalence =~ program_type + s(year), max.em.its = 70,data = out$meta, init.type = "Spectral")
+processed <- textProcessor(yle.stm.subsample$all_text, metadata = yle.stm.subsample,stem=FALSE,customstopwords = stopwords$V1)
+
+out <- prepDocuments(processed$documents, processed$vocab, processed$meta, lower.thresh = 15)
+model.fit <- stm(out$documents, out$vocab, K = 30,prevalence =~ program_type + s(year), max.em.its = 40,data = out$meta, init.type = "Spectral")
 
 prep <- estimateEffect(1:20 ~ program_type + s(year), model.fit,meta = out$meta, uncertainty = "Global")
 
-plot.estimateEffect(prep, "year", method = "continuous", topics = 3, printlegend = TRUE, xaxt = "n", xlab = "Years")
-plot.STM(model.fit, type = "summary", xlim = c(0, .3))
+plot.estimateEffect(prep, "year", method = "continuous", topics = 2, printlegend = TRUE, xaxt = "n", xlab = "Years")
+plot.STM(model.fit, type = "summary", xlim = c(0, .6))
 axis(1,at=seq(from=1960, to=1990,by=10))
 ```
 
