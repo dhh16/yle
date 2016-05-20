@@ -1,0 +1,715 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column tsekkaus at index 23 based on column subject using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "Antero",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "newColumnName": "tsekkaus",
+    "columnInsertIndex": 23,
+    "baseColumnName": "subject",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression grel:\"antero\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "Antero",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "grel:\"antero\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression null",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "Antero",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "null",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression null",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "null",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression grel:\"antero\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "Antero",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "grel:\"antero\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression grel:\"antero-urho\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "Antero",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "Urho",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "grel:\"antero-urho\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression grel:\"sylvi\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Sylvi",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "grel:\"sylvi\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression grel:\"sylvi-urho\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Sylvi",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "Urho",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "grel:\"sylvi-urho\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression grel:\"vieno\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Vieno",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "grel:\"vieno\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression grel:\"vieno-urho\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Vieno",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "Urho",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "grel:\"vieno-urho\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column tsekkaus using expression grel:\"urho\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "Kekko*",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "",
+          "name": "content",
+          "type": "text",
+          "columnName": "content"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": true,
+          "selection": [],
+          "selectError": false,
+          "invert": false,
+          "name": "tsekkaus",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "tsekkaus"
+        }
+      ]
+    },
+    "columnName": "tsekkaus",
+    "expression": "grel:\"urho\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column programme_title_low at index 2 based on column programme_title using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:value.contains(\"eduskuntavaal\")",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "description",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "description"
+        }
+      ]
+    },
+    "newColumnName": "programme_title_low",
+    "columnInsertIndex": 2,
+    "baseColumnName": "programme_title",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column programme_title_low using expression value.toLowercase()",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:value.contains(\"eduskuntavaal\")",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "description",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "description"
+        }
+      ]
+    },
+    "columnName": "programme_title_low",
+    "expression": "value.toLowercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column elections at index 3 based on column programme_title_low using expression grel:if(value.contains('eduskuntavaa'),'vaalit','')",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:value.contains(\"eduskuntavaal\")",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "description",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "description"
+        }
+      ]
+    },
+    "newColumnName": "elections",
+    "columnInsertIndex": 3,
+    "baseColumnName": "programme_title_low",
+    "expression": "grel:if(value.contains('eduskuntavaa'),'vaalit','')",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column elections using expression grel:\"vaalit\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:value.contains(\"eduskuntavaal\")",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "content",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "content"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": true,
+          "selection": [],
+          "selectError": false,
+          "invert": false,
+          "name": "elections",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "elections"
+        }
+      ]
+    },
+    "columnName": "elections",
+    "expression": "grel:\"vaalit\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column elections using expression grel:\"vaalit\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:value.contains(\"eduskuntavaal\")",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "description",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "description"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": true,
+          "selection": [],
+          "selectError": false,
+          "invert": false,
+          "name": "elections",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "elections"
+        }
+      ]
+    },
+    "columnName": "elections",
+    "expression": "grel:\"vaalit\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column elections using expression grel:\"vaalit\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:value.contains(\"eduskuntavaal\")",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "subject",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "subject"
+        }
+      ]
+    },
+    "columnName": "elections",
+    "expression": "grel:\"vaalit\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column elections using expression grel:\"vaalit\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": true,
+          "selection": [],
+          "selectError": false,
+          "invert": false,
+          "name": "elections",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "elections"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "1983",
+          "name": "firstrun_date",
+          "type": "text",
+          "columnName": "firstrun_date"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "UUTI",
+                "l": "UUTI"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "program_type",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "program_type"
+        },
+        {
+          "mode": "text",
+          "caseSensitive": false,
+          "query": "eduskuntavaal",
+          "name": "description",
+          "type": "text",
+          "columnName": "description"
+        }
+      ]
+    },
+    "columnName": "elections",
+    "expression": "grel:\"vaalit\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
