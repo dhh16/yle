@@ -3,7 +3,7 @@ declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare option output:method "csv";
 declare option output:csv "header=yes, separator=semicolon";
 
-
+(:Scripts transforms XML exported from METRO database to CSV:)
 
 declare function local:process-archivist-codes($codes as xs:string) as xs:string? {
   
@@ -44,7 +44,7 @@ declare function local:convert-milliseconds-to-minutes($duration as xs:string) a
 
 let $csv:=
 <csv>{
-  for $record in /programmes/AXFRoot[position()<5]
+  for $record in /programmes/AXFRoot
     let $id:=data($record/MAObject[@mdclass="PROGRAMME"]/GUID)
     let $programme_title:=replace(normalize-space(data($record/MAObject[@mdclass="PROGRAMME"]/Meta[@name="SECONDARY_TITLE"])),'\.\.\.','.')
     let $tokenized_title:=tokenize($programme_title,'\.\s')
