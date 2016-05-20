@@ -38,22 +38,28 @@ colour_palette <- c(
 ```
 
 
-```{r}
+```{r load-program-length}
 
-# Vuoteen 1977 asti toimitukset itse ovat saaneet päättää mitä hävitetään ja mitä ei
-# sen jälkeen on päättänyt ohjelmaraati
-# 1977 alkoi myös omatutantoisten ohjelmien systemaattinen luettelointi
+yle.lengths.dt <- fread('/Users/majulass/Documents/2016/yle/data_analysis/program-run-dates.csv')
+yle.lengths.dt$number <- 1
+yle.lengths.dt$year <- year(yle.lengths.dt$date)
+yle.durations.dt <-yle.dt[,.(id,duration)]
+yle.lengths.dt <- yle.lengths.dt %>% inner_join(yle.durations.dt,by="id")
+yle.lengths.dt$year <-  year(yle.lengths.dt$date)
 
-# PUBLICATIONS_TVAR	Lähetystiedot (hist, lähetyshistoria vanha ennen vuotta 2001)
-# PUBLICATIONS	Lähetystiedot (Plasma)
-# PUBLICATIONS_TVAR	Lähetystiedot (hist)
+yle.hours.dt <- fread('/Users/majulass/Documents/2016/yle/data_analysis/yle-hours.csv')
+yle.hours.dt$year <- as.numeric(substr(yle.hours.dt$tot_enddate,1,4))
+yle.hours.dt <- yle.hours.dt[,.(year,total_hours)]
+yle.data.durations <- yle.dt %>%
+  group_by(year) %>%
+  transmute(year=year,count=sum(duration,na.rm=TRUE)) %>%
+  unique
 
-
-# DOCUMENTATION_DATE	Dokpvm, manuaalisesti tehty päivä
-# yle.dt.3 <- fread('/Users/majulass/Documents/2016/dhh16/yle-full_4.tsv')
-
+yle.data.durations <- yle.data.durations %>% transmute(year=year,hours=count/60)
+yle.data.durations <- yle.data.durations %>% full_join(yle.hours.dt,by="year")
 
 ```
+
 
 
 
@@ -118,7 +124,7 @@ yle.dt[yle.dt$program_type==""]$program_type <- "NOT CATEGORIZED"
 
 ```{r other-datasets}
 # Files with metadata field string lengths
-yle.lengths.dt <- fread('/Users/majulass/Documents/2016/dhh16/yle-metadata-field-lengths.csv')
+yle.lengths.dt <- fread('yle-metadata-field-lengths.csv')
 
 
 ```
@@ -227,11 +233,13 @@ yle.data.durations <- yle.dt %>%
 
 
 ```{r fig.width=14, fig.height=6}
-ggplot(data=yle.data.durations, aes(x=year,y=count)) +
-  geom_bar(stat="identity") +
+ggplot(data=yle.data.durations) +
+  geom_area(aes(x=year,y=total_hours,ymin=0),stat="identity",fill="orange") +
+  geom_bar(aes(x=year,y=hours),stat="identity",fill="red") +
   scale_x_continuous(breaks=c(1957:1990),labels=c(1957:1990)) +
-  theme_minimal() +
-  labs(list(title="Total program time in minutes from 1957-1990",x="year", y="total time in minutes"))
+  scale_fill_discrete(labels=c("hours of first runs of programs","total airtime"))
+  labs(list(title="Total program time and total airtime in minutes from 1957-1990",x="year", y="hours")) +
+  theme_minimal()
 
 ```
   
@@ -283,10 +291,3 @@ ggplot(data=yle.descr.lengths.dt, aes(x=as.factor(year),y=total_length)) +
   theme_minimal()
 
 ```
-
-
-
-
-
-
-
