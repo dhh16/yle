@@ -1,0 +1,43 @@
+---
+title: "YLE Metro Metadata Changes over time"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(data.table)
+library(stm)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+library(ggthemes)
+library(stringr)
+
+
+```
+
+```{r prepare-data-and-plot}
+archivist.dt <- fread('documentarist-change-dates.csv')
+yle.dt <- fread('yle-full-metadata.tsv')
+yle.dt <- yle.dt[,.(id,firstrun_date)]
+
+archivist.dt$documentation_year <- as.numeric(substr(archivist.dt$date,1,4))
+# We have to filter out extreme outliers, which are likely to be
+# errors
+archivist.dt <- archivist.dt[documentation_year > 1960]
+archivist.dt <- archivist.dt[documentation_year < 2016]
+archivist.dt <- archivist.dt[!is.na(archivist.dt$documentation_year)]
+archivist.dt <- archivist.dt %>% inner_join(yle.dt,by="id")
+archivist.dt$run_year <- year(archivist.dt$firstrun_date)
+
+ggplot(data=archivist.dt, aes(x=run_year,color=code,y=documentation_year)) +
+  geom_jitter(width = 0.9, height = 0.9,alpha=0.15,size=1) +
+  scale_x_continuous(breaks=seq(from=1960, to=1990,by=10),labels=seq(from=1960, to=1990,by=10)) +
+  scale_y_continuous(breaks=seq(from=1960, to=2020,by=10),labels=seq(from=1960, to=2020,by=10)) +
+  labs(list(title="Metadata change activity over years",x="First run of the program", y="Metadata change year")) +
+  theme_minimal() +
+  theme(legend.position="none",axis.text=element_text(size=14),axis.title=element_text(size=16,face="bold"))
+
+```
+
