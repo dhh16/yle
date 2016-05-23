@@ -1,0 +1,992 @@
+[
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column using expression clojure:(.replace value \"'\" \"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        }
+      ]
+    },
+    "columnName": "Column",
+    "expression": "clojure:(.replace value \"'\" \"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column2 using expression grel:\"male\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Aake",
+                "l": "Aake"
+              }
+            },
+            {
+              "v": {
+                "v": "Aadolf",
+                "l": "Aadolf"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column"
+        }
+      ]
+    },
+    "columnName": "Column2",
+    "expression": "grel:\"male\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column2 using expression grel:\"muu\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "A",
+                "l": "A"
+              }
+            },
+            {
+              "v": {
+                "v": "F",
+                "l": "F"
+              }
+            },
+            {
+              "v": {
+                "v": "J",
+                "l": "J"
+              }
+            },
+            {
+              "v": {
+                "v": "K",
+                "l": "K"
+              }
+            },
+            {
+              "v": {
+                "v": "Loppumusta",
+                "l": "Loppumusta"
+              }
+            },
+            {
+              "v": {
+                "v": "S",
+                "l": "S"
+              }
+            },
+            {
+              "v": {
+                "v": "V",
+                "l": "V"
+              }
+            },
+            {
+              "v": {
+                "v": "von",
+                "l": "von"
+              }
+            },
+            {
+              "v": {
+                "v": "II",
+                "l": "II"
+              }
+            },
+            {
+              "v": {
+                "v": "SU",
+                "l": "SU"
+              }
+            },
+            {
+              "v": {
+                "v": "Tohtori",
+                "l": "Tohtori"
+              }
+            },
+            {
+              "v": {
+                "v": "de",
+                "l": "de"
+              }
+            },
+            {
+              "v": {
+                "v": "LOPPUTEKSTIT",
+                "l": "LOPPUTEKSTIT"
+              }
+            },
+            {
+              "v": {
+                "v": "Mies",
+                "l": "Mies"
+              }
+            },
+            {
+              "v": {
+                "v": "haast",
+                "l": "haast"
+              }
+            },
+            {
+              "v": {
+                "v": "Lopputunnus",
+                "l": "Lopputunnus"
+              }
+            },
+            {
+              "v": {
+                "v": "HAAST",
+                "l": "HAAST"
+              }
+            },
+            {
+              "v": {
+                "v": "LOPPUTUNNUS",
+                "l": "LOPPUTUNNUS"
+              }
+            },
+            {
+              "v": {
+                "v": "Loppulogo",
+                "l": "Loppulogo"
+              }
+            },
+            {
+              "v": {
+                "v": "Haast",
+                "l": "Haast"
+              }
+            },
+            {
+              "v": {
+                "v": "Näytelmäjaksot",
+                "l": "Näytelmäjaksot"
+              }
+            },
+            {
+              "v": {
+                "v": "Sääkarttoja",
+                "l": "Sääkarttoja"
+              }
+            },
+            {
+              "v": {
+                "v": "AVAINSANAT",
+                "l": "AVAINSANAT"
+              }
+            },
+            {
+              "v": {
+                "v": "Tekijätiedot",
+                "l": "Tekijätiedot"
+              }
+            },
+            {
+              "v": {
+                "v": "loppujuonto",
+                "l": "loppujuonto"
+              }
+            },
+            {
+              "v": {
+                "v": "ark",
+                "l": "ark"
+              }
+            },
+            {
+              "v": {
+                "v": "Professori",
+                "l": "Professori"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column"
+        }
+      ]
+    },
+    "columnName": "Column2",
+    "expression": "grel:\"muu\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column using expression value.toTitlecase()",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        }
+      ]
+    },
+    "columnName": "Column",
+    "expression": "value.toTitlecase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column2 using expression grel:\"muu\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Sat",
+                "l": "Sat"
+              }
+            },
+            {
+              "v": {
+                "v": "Loppujuonto",
+                "l": "Loppujuonto"
+              }
+            },
+            {
+              "v": {
+                "v": "Lopputekstit",
+                "l": "Lopputekstit"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column"
+        }
+      ]
+    },
+    "columnName": "Column2",
+    "expression": "grel:\"muu\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column2 using expression grel:\"male\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Oiva",
+                "l": "Oiva"
+              }
+            },
+            {
+              "v": {
+                "v": "Erkki",
+                "l": "Erkki"
+              }
+            },
+            {
+              "v": {
+                "v": "Risto",
+                "l": "Risto"
+              }
+            },
+            {
+              "v": {
+                "v": "Pertti",
+                "l": "Pertti"
+              }
+            },
+            {
+              "v": {
+                "v": "Timo",
+                "l": "Timo"
+              }
+            },
+            {
+              "v": {
+                "v": "Markku",
+                "l": "Markku"
+              }
+            },
+            {
+              "v": {
+                "v": "Heikki",
+                "l": "Heikki"
+              }
+            },
+            {
+              "v": {
+                "v": "Jörn",
+                "l": "Jörn"
+              }
+            },
+            {
+              "v": {
+                "v": "Kari",
+                "l": "Kari"
+              }
+            },
+            {
+              "v": {
+                "v": "Lasse",
+                "l": "Lasse"
+              }
+            },
+            {
+              "v": {
+                "v": "Göran",
+                "l": "Göran"
+              }
+            },
+            {
+              "v": {
+                "v": "Juice",
+                "l": "Juice"
+              }
+            },
+            {
+              "v": {
+                "v": "Erik",
+                "l": "Erik"
+              }
+            },
+            {
+              "v": {
+                "v": "Olavi",
+                "l": "Olavi"
+              }
+            },
+            {
+              "v": {
+                "v": "Jarmo",
+                "l": "Jarmo"
+              }
+            },
+            {
+              "v": {
+                "v": "Juhani",
+                "l": "Juhani"
+              }
+            },
+            {
+              "v": {
+                "v": "Kalle",
+                "l": "Kalle"
+              }
+            },
+            {
+              "v": {
+                "v": "Esko",
+                "l": "Esko"
+              }
+            },
+            {
+              "v": {
+                "v": "Hannu",
+                "l": "Hannu"
+              }
+            },
+            {
+              "v": {
+                "v": "Jukka",
+                "l": "Jukka"
+              }
+            },
+            {
+              "v": {
+                "v": "Vesa",
+                "l": "Vesa"
+              }
+            },
+            {
+              "v": {
+                "v": "Pekka",
+                "l": "Pekka"
+              }
+            },
+            {
+              "v": {
+                "v": "Eero",
+                "l": "Eero"
+              }
+            },
+            {
+              "v": {
+                "v": "Väinö",
+                "l": "Väinö"
+              }
+            },
+            {
+              "v": {
+                "v": "Markk",
+                "l": "Markk"
+              }
+            },
+            {
+              "v": {
+                "v": "Harri",
+                "l": "Harri"
+              }
+            },
+            {
+              "v": {
+                "v": "Antero",
+                "l": "Antero"
+              }
+            },
+            {
+              "v": {
+                "v": "Martti",
+                "l": "Martti"
+              }
+            },
+            {
+              "v": {
+                "v": "Ilkka",
+                "l": "Ilkka"
+              }
+            },
+            {
+              "v": {
+                "v": "Yrjö",
+                "l": "Yrjö"
+              }
+            },
+            {
+              "v": {
+                "v": "Carl",
+                "l": "Carl"
+              }
+            },
+            {
+              "v": {
+                "v": "Pentti",
+                "l": "Pentti"
+              }
+            },
+            {
+              "v": {
+                "v": "Eino",
+                "l": "Eino"
+              }
+            },
+            {
+              "v": {
+                "v": "Jorma",
+                "l": "Jorma"
+              }
+            },
+            {
+              "v": {
+                "v": "Seppo",
+                "l": "Seppo"
+              }
+            },
+            {
+              "v": {
+                "v": "Jaakko",
+                "l": "Jaakko"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column"
+        }
+      ]
+    },
+    "columnName": "Column2",
+    "expression": "grel:\"male\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column Column",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        }
+      ]
+    },
+    "columnName": "Column",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Kekkosen"
+        ],
+        "to": "Kekkonen"
+      }
+    ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column2 using expression grel:\"female\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Ritva",
+                "l": "Ritva"
+              }
+            },
+            {
+              "v": {
+                "v": "Pirkko",
+                "l": "Pirkko"
+              }
+            },
+            {
+              "v": {
+                "v": "Liisa",
+                "l": "Liisa"
+              }
+            },
+            {
+              "v": {
+                "v": "Sorsa",
+                "l": "Sorsa"
+              }
+            },
+            {
+              "v": {
+                "v": "Tiina",
+                "l": "Tiina"
+              }
+            },
+            {
+              "v": {
+                "v": "Eva",
+                "l": "Eva"
+              }
+            },
+            {
+              "v": {
+                "v": "Helena",
+                "l": "Helena"
+              }
+            },
+            {
+              "v": {
+                "v": "Marja",
+                "l": "Marja"
+              }
+            },
+            {
+              "v": {
+                "v": "Irma",
+                "l": "Irma"
+              }
+            },
+            {
+              "v": {
+                "v": "Leena",
+                "l": "Leena"
+              }
+            },
+            {
+              "v": {
+                "v": "Anja",
+                "l": "Anja"
+              }
+            },
+            {
+              "v": {
+                "v": "Anna",
+                "l": "Anna"
+              }
+            },
+            {
+              "v": {
+                "v": "Kristiina",
+                "l": "Kristiina"
+              }
+            },
+            {
+              "v": {
+                "v": "Tuija",
+                "l": "Tuija"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column"
+        }
+      ]
+    },
+    "columnName": "Column2",
+    "expression": "grel:\"female\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column2 using expression grel:\"muu\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "andy",
+                "l": "andy"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column2",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column2"
+        },
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Loppuplanssit",
+                "l": "Loppuplanssit"
+              }
+            },
+            {
+              "v": {
+                "v": "Ritva",
+                "l": "Ritva"
+              }
+            },
+            {
+              "v": {
+                "v": "Pirkko",
+                "l": "Pirkko"
+              }
+            },
+            {
+              "v": {
+                "v": "Liisa",
+                "l": "Liisa"
+              }
+            },
+            {
+              "v": {
+                "v": "Sorsa",
+                "l": "Sorsa"
+              }
+            },
+            {
+              "v": {
+                "v": "Tiina",
+                "l": "Tiina"
+              }
+            },
+            {
+              "v": {
+                "v": "Eva",
+                "l": "Eva"
+              }
+            },
+            {
+              "v": {
+                "v": "Helena",
+                "l": "Helena"
+              }
+            },
+            {
+              "v": {
+                "v": "Marja",
+                "l": "Marja"
+              }
+            },
+            {
+              "v": {
+                "v": "Irma",
+                "l": "Irma"
+              }
+            },
+            {
+              "v": {
+                "v": "Leena",
+                "l": "Leena"
+              }
+            },
+            {
+              "v": {
+                "v": "Anja",
+                "l": "Anja"
+              }
+            },
+            {
+              "v": {
+                "v": "Anna",
+                "l": "Anna"
+              }
+            },
+            {
+              "v": {
+                "v": "Kristiina",
+                "l": "Kristiina"
+              }
+            },
+            {
+              "v": {
+                "v": "Tuija",
+                "l": "Tuija"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Column",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Column"
+        }
+      ]
+    },
+    "columnName": "Column2",
+    "expression": "grel:\"muu\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column using expression clojure:(.replace value \"'\" \"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "Column",
+    "expression": "clojure:(.replace value \"'\" \"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column using expression value.toTitlecase()",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "Column",
+    "expression": "value.toTitlecase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
